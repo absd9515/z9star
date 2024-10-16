@@ -12,6 +12,7 @@
         <label for="message">메시지:</label>
         <textarea id="message" name="message"></textarea><br>
         <button type="button" onclick="addMessage()">등록</button>
+        document.oncontextmenu = function(){return false;}
     </form>
     <div id="messageList"></div>
 
