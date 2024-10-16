@@ -1,6 +1,0 @@
-CREATE TABLE guestbook (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50),
-    message TEXT,
-    reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
