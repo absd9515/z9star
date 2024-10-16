@@ -5,32 +5,42 @@
 </head>
 <body>
     <h1>방명록</h1>
-    <form action="save.php" method="post">
+    <form id="guestbookForm">
         <label for="name">이름:</label>
         <input type="text" id="name" name="name"><br>
         <label for="message">메시지:</label>
         <textarea id="message" name="message"></textarea><br>
-        <input type="submit" value="글쓰기">
+        <button type="button" onclick="addMessage()">등록</button>
     </form>
-    
-    <div id="message_list">
-        </div>
-    <div id="message_list">
-    <?php
-    // 데이터베이스에서 글 목록 가져오기
-    $sql = "SELECT * FROM guestbook ORDER BY id DESC";
-    $result = $conn->query($sql);
+    <div id="messageList"></div>
 
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            echo "<   
-p><strong>" . $row["name"] . "</strong>: " . $row["message"] . "</p>";
+    <script>
+        function addMessage() {
+            const name = document.getElementById('name').value;
+            const message = document.getElementById('message').value;
+
+            // 로컬 스토리지에 저장 (예시)
+            const messages = JSON.parse(localStorage.getItem('messages')) || [];
+            messages.push({ name, message });
+            localStorage.setItem('messages', JSON.stringify(messages));
+
+            // 화면에 출력
+            const messageList = document.getElementById('messageList');
+            messageList.innerHTML += `<p><strong>${name}</strong>: ${message}</p>`;
+
+            // 입력창 초기화
+            document.getElementById('name').value = '';
+            document.getElementById('message').value = '';
         }
-    } else   
- {
-        echo "아직 작성된 글이 없습니다.";
-    }
-    ?>
-</div>
+
+        // 페이지 로드 시 저장된 메시지 불러오기 (예시)
+        window.onload = function() {
+            const messages = JSON.parse(localStorage.getItem('messages')) || [];
+            const messageList = document.getElementById('messageList');
+            messages.forEach(msg => {
+                messageList.innerHTML += `<p><strong>${msg.name}</strong>: ${msg.message}</p>`;
+            });
+        };
+    </script>
 </body>
 </html>
