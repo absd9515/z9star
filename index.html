@@ -1,25 +1,18 @@
-<script>
-function addMessage() {
-    const name = document.getElementById('name').value;
-    const message = document.getElementById('message').value;
+!DOCTYPE html>
+<html>
+<head>
+  <title>방명록</title>
+</head>
+<body>
+  <form id="guestbookForm">
+    <input type="text" id="name" placeholder="이름">
+    <textarea id="message" placeholder="메시지"></textarea>
+    <button type="submit">등록</button>
+  </form>
+  <div id="messageList"></div>
 
-    // 서버로 데이터 전송 (Fetch API 사용)
-    fetch('/addMessage', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ name, message })
-    })
-    .then(response => response.json())
-    .then(data   
- => {
-        // 서버에서 받은 응답 처리
-        console.log(data);
-        // 메시지 목록 업데이트 (서버에서 데이터를 다시 가져와서 화면에 표시)
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-}
-</script>
+  <script>
+    // JavaScript 코드 (Fetch API 사용하여 메시지 등록 및 조회)
+  </script>
+</body>
+</html>
