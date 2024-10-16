@@ -1,46 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>방명록</title>
+  <title>방명록</title>
 </head>
 <body>
-    <h1>방명록</h1>
-    <form id="guestbookForm">
-        <label for="name">이름:</label>
-        <input type="text" id="name" name="name"><br>
-        <label for="message">메시지:</label>
-        <textarea id="message" name="message"></textarea><br>
-        <button type="button" onclick="addMessage()">등록</button>
-    </form>
-    <div id="messageList"></div>
+  <h1>방명록</h1>
+  <form id="guestbookForm">
+    <label for="name">이름:</label>
+    <input type="text" id="name" name="name"><br>
+    <label for="message">메시지:</label>
+    <textarea id="message" name="message"></textarea><br>
+    <button type="button" onclick="addMessage()">등록</button>
+  </form>
+  <div id="messageList"></div>
 
-    <script>
-        function addMessage() {
-            const name = document.getElementById('name').value;
-            const message = document.getElementById('message').value;
-
-            // 로컬 스토리지에 저장 (예시)
-            const messages = JSON.parse(localStorage.getItem('messages')) || [];
-            messages.push({ name, message });
-            localStorage.setItem('messages', JSON.stringify(messages));
-
-            // 화면에 출력
-            const messageList = document.getElementById('messageList');
-            messageList.innerHTML += `<p><strong>${name}</strong>: ${message}</p>`;
-
-            // 입력창 초기화
-            document.getElementById('name').value = '';
-            document.getElementById('message').value = '';
-        }
-
-        // 페이지 로드 시 저장된 메시지 불러오기 (예시)
-        window.onload = function() {
-            const messages = JSON.parse(localStorage.getItem('messages')) || [];
-            const messageList = document.getElementById('messageList');
-            messages.forEach(msg => {
-                messageList.innerHTML += `<p><strong>${msg.name}</strong>: ${msg.message}</p>`;
-            });
-        };
-    </script>
 </body>
+<script>
+  function addMessage() {
+    const name = document.getElementById('name').value;
+    const message = document.getElementById('message').value;
+
+    // 로컬 스토리지에 저장 (예시)
+    const messages = JSON.parse(localStorage.getItem('messages')) || [];
+    messages.push({ name, message });
+    localStorage.setItem('messages', JSON.stringify(messages));
+
+    // 화면에 출력
+    const messageList = document.getElementById('messageList');
+    messageList.innerHTML += `<p><strong>${name}</strong>: ${message}</p>`;
+
+    // 입력창 초기화
+    document.getElementById('name').value = '';
+    document.getElementById('message').value = '';
+  }
+
+  // 페이지 로드 시 저장된 메시지 불러오기 (예시)
+  window.onload = function() {
+    const messages = JSON.parse(localStorage.getItem('messages')) || [];
+    const messageList = document.getElementById('messageList');
+    messages.forEach(msg => {
+      messageList.innerHTML += `<p><strong>${msg.name}</strong>: ${msg.message}</p>`;
+    });
+  };
+</script>
 </html>
