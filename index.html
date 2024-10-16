@@ -2,6 +2,13 @@
 <html>
 <head>
     <title>방명록</title>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Portfolio</title>
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript">
+    document.oncontextmenu = function(){return false;}
 </head>
 <body>
     <h1>방명록</h1>
@@ -12,7 +19,6 @@
         <label for="message">메시지:</label>
         <textarea id="message" name="message"></textarea><br>
         <button type="button" onclick="addMessage()">등록</button>
-        document.oncontextmenu = function(){return false;}
     </form>
     <div id="messageList"></div>
 
